@@ -1,28 +1,37 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import LanguageSwitcher from '../../ui/langage-selector';
-import { Link } from '@/i18n/routing';
 import {
   LayoutDashboard,
   FileText,
   Video,
   BookOpen,
-  Medal,
   MessageCircle,
   Settings,
-  ChevronLeft,
-  ChevronRight,
   Images,
   PenTool
 } from 'lucide-react';
 
-export default function Sidebar() {
-  const [expanded, setExpanded] = useState(true);
-  const t = useTranslations('sidebar');
-  const commonT = useTranslations('common');
+// Importar componentes
+import SidebarHeader from './components/SidebarHeader';
+import Navigation from './components/Navigation';
+import CertificationFooter from './components/CertificationFooter';
+import LanguageSelector from './components/LanguageSelector';
+import MobileSidebar from './components/MobileSidebar';
+import MobileMenuButton from './components/MobileMenuButton';
 
+// Importar hook personalizado
+import { useSidebarState } from './hooks/useSidebarState';
+
+/**
+ * Componente principal del sidebar que orquesta todos los subcomponentes
+ */
+export default function Sidebar() {
+  const { expanded, mobileOpen, toggleExpanded, openMobile, closeMobile } =
+    useSidebarState();
+  const t = useTranslations('sidebar');
+
+  // Definición de los elementos del menú
   const menuItems = [
     { name: t('dashboard'), icon: LayoutDashboard, path: '/dashboard' },
     {
@@ -40,66 +49,36 @@ export default function Sidebar() {
   ];
 
   return (
-    <div
-      className={`h-screen bg-[#1c1c22] transition-all duration-300 ${
-        expanded ? 'w-64' : 'w-20'
-      }`}
-    >
-      <div className='flex flex-col h-full'>
-        {/* Logo and toggle */}
-        <div className='flex items-center justify-between p-4 border-b border-gray-800'>
-          {expanded && (
-            <h1 className='text-white text-xl font-bold'>
-              {commonT('appName')}
-            </h1>
-          )}
-          <button
-            onClick={() => setExpanded(!expanded)}
-            className='p-1 rounded-full hover:bg-gray-700'
-          >
-            {expanded ? (
-              <ChevronLeft className='h-6 w-6 text-white' />
-            ) : (
-              <ChevronRight className='h-6 w-6 text-white' />
-            )}
-          </button>
-        </div>
+    <>
+      {/* Sidebar para desktop */}
+      <div
+        className={`h-screen bg-[#053c69] transition-all duration-300 hidden md:block ${
+          expanded ? 'w-72' : 'w-16'
+        }`}
+      >
+        <div className='flex flex-col h-full'>
+          <SidebarHeader expanded={expanded} onToggle={toggleExpanded} />
 
-        {/* Navigation menu */}
-        <nav className='flex-1 overflow-y-auto py-4'>
-          <ul className='space-y-2 px-2'>
-            {menuItems.map(item => (
-              <li key={item.name}>
-                <Link
-                  href={item.path}
-                  className='flex items-center p-2 text-white rounded-lg hover:bg-gray-700 hover:text-white transition-colors duration-200'
-                >
-                  {item.icon && (
-                    <div className='w-6 h-6 mr-3 flex justify-center items-center'>
-                      <item.icon className='h-5 w-5' />
-                    </div>
-                  )}
-                  {expanded && <span className='font-medium'>{item.name}</span>}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        </nav>
+          <Navigation
+            menuItems={menuItems}
+            expanded={expanded}
+            onItemClick={() => {}}
+          />
 
-        {/* Language switcher at bottom */}
-        <div className='p-4 border-t border-gray-800'>
-          {expanded ? (
-            <div className='flex justify-between items-center'>
-              <span className='text-white text-sm'>{t('language')}</span>
-              <LanguageSwitcher darkMode={true} />
-            </div>
-          ) : (
-            <div className='flex justify-center'>
-              <LanguageSwitcher darkMode={true} />
-            </div>
-          )}
+          {expanded && <CertificationFooter t={t} />}
+
+          <LanguageSelector t={t} expanded={expanded} />
         </div>
       </div>
-    </div>
+
+      {/* Componentes mobile */}
+      <MobileMenuButton onClick={openMobile} />
+      <MobileSidebar
+        isOpen={mobileOpen}
+        onClose={closeMobile}
+        menuItems={menuItems}
+        t={t}
+      />
+    </>
   );
 }

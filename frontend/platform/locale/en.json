@@ -11,7 +11,9 @@
     "settings": "Settings",
     "profile": "Profile",
     "logout": "Logout",
-    "language": "Language"
+    "language": "Language",
+    "clinicallyValidated": "Clinically Validated",
+    "drugFree": "100% Drug-free & Safe"
   },
   "common": {
     "welcome": "Welcome",
@@ -30,11 +32,26 @@
     "keepFocused": "Stay focused, stay productive",
     "retry": "Retry",
     "explore": "Explore",
+    "getStarted": "Get Started",
+    "takeADHDTest": "Take ADHD Test",
+    "moreEffective": "5 times more effective than Brain Training Apps. Over 95% see significant improvement in 45 days.",
     "languageNames": {
       "en": "English",
       "es": "Spanish"
     },
     "appName": "Play Attention"
+  },
+  "home": {
+    "hero": "Hope and clarity are within reach",
+    "description": "Play Attention is a mind-powered brain training program that unlocks your full potential to pave the way for a successful life right now.",
+    "clinicallyValidated": "Clinically validated to improve:",
+    "executiveFunction": "Executive Function",
+    "attention": "Attention",
+    "emotionalRegulation": "Emotional Regulation",
+    "impulseControl": "Impulse Control",
+    "selfConfidence": "Self Confidence",
+    "behavior": "Behavior",
+    "organization": "Organization"
   },
   "dashboard": {
     "welcomeTitle": "Welcome to Play Attention",
@@ -54,7 +71,14 @@
     "support": "Support",
     "supportDesc": "Live chat, tickets, and contact forms for assistance.",
     "settings": "Settings",
-    "settingsDesc": "Manage your account and preferences."
+    "settingsDesc": "Manage your account and preferences.",
+    "yourTrainingResources": "Your Training Resources",
+    "focusAttention": "Focus your attention",
+    "buildSkills": "Build executive skills",
+    "achievePotential": "Achieve your potential",
+    "readyToPractice": "Ready to practice?",
+    "tenMinutesDay": "10 minutes a day can significantly improve your cognitive abilities.",
+    "startTodaySession": "Start Today's Session"
   },
   "educationalMaterial": {
     "title": "Educational Material",

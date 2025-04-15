@@ -48,9 +48,11 @@ export default async function RootLayout({ children, params }) {
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
           <QueryProvider>
-            <div className='flex h-screen'>
+            <div className='flex flex-col md:flex-row h-screen'>
               <Sidebar />
-              <main className='flex-1 overflow-auto'>{children}</main>
+              <main className='flex-1 overflow-auto pt-16 md:pt-0'>
+                {children}
+              </main>
             </div>
           </QueryProvider>
         </NextIntlClientProvider>

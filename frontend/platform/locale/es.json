@@ -11,7 +11,9 @@
     "settings": "Configuración",
     "profile": "Perfil",
     "logout": "Cerrar sesión",
-    "language": "Idioma"
+    "language": "Idioma",
+    "clinicallyValidated": "Clínicamente Validado",
+    "drugFree": "100% Natural y Seguro"
   },
   "common": {
     "welcome": "Bienvenido",
@@ -30,11 +32,26 @@
     "keepFocused": "Mantente enfocado, mantente productivo",
     "retry": "Reintentar",
     "explore": "Explorar",
+    "getStarted": "Empezar Ahora",
+    "takeADHDTest": "Realizar Test de TDAH",
+    "moreEffective": "5 veces más efectivo que las aplicaciones de entrenamiento cerebral. Más del 95% ve mejoras significativas en 45 días.",
     "languageNames": {
       "en": "Inglés",
       "es": "Español"
     },
     "appName": "Play Attention"
+  },
+  "home": {
+    "hero": "La esperanza y la claridad están a tu alcance",
+    "description": "Play Attention es un programa de entrenamiento cerebral que desbloquea todo tu potencial para allanar el camino hacia una vida exitosa ahora mismo.",
+    "clinicallyValidated": "Clínicamente validado para mejorar:",
+    "executiveFunction": "Función Ejecutiva",
+    "attention": "Atención",
+    "emotionalRegulation": "Regulación Emocional",
+    "impulseControl": "Control de Impulsos",
+    "selfConfidence": "Autoconfianza",
+    "behavior": "Comportamiento",
+    "organization": "Organización"
   },
   "dashboard": {
     "welcomeTitle": "Bienvenido a Play Attention",
@@ -54,7 +71,14 @@
     "support": "Soporte",
     "supportDesc": "Chat en vivo, tickets y formularios de contacto para asistencia.",
     "settings": "Configuración",
-    "settingsDesc": "Administra tu cuenta y preferencias."
+    "settingsDesc": "Administra tu cuenta y preferencias.",
+    "yourTrainingResources": "Tus Recursos de Entrenamiento",
+    "focusAttention": "Enfoca tu atención",
+    "buildSkills": "Desarrolla habilidades ejecutivas",
+    "achievePotential": "Alcanza tu potencial",
+    "readyToPractice": "¿Listo para practicar?",
+    "tenMinutesDay": "10 minutos al día pueden mejorar significativamente tus habilidades cognitivas.",
+    "startTodaySession": "Iniciar Sesión de Hoy"
   },
   "educationalMaterial": {
     "title": "Material Educativo",
