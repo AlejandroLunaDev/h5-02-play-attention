@@ -15,6 +15,8 @@ import {
   CardHeader,
   CardTitle
 } from '@/shared/ui/card';
+import { Button } from '@/shared/ui/button';
+import { cn } from '@/lib/utils';
 
 export default function SupportTabs({ activeTab, setActiveTab }) {
   const t = useTranslations('support');
@@ -37,20 +39,22 @@ export default function SupportTabs({ activeTab, setActiveTab }) {
           <ul>
             {tabs.map(tab => (
               <li key={tab.id}>
-                <button
+                <Button
                   onClick={() => setActiveTab(tab.id)}
-                  className={`flex items-center justify-between w-full p-4 text-left ${
+                  variant='ghost'
+                  className={cn(
+                    'flex items-center justify-between w-full p-4 text-left rounded-none h-auto',
                     activeTab === tab.id
-                      ? 'bg-blue-50 text-blue-700 border-l-4 border-blue-700'
-                      : 'text-gray-700 hover:bg-gray-50'
-                  }`}
+                      ? 'bg-primary/10 text-primary border-l-4 border-primary'
+                      : 'text-foreground hover:bg-accent'
+                  )}
                 >
                   <div className='flex items-center'>
                     <tab.icon className='h-5 w-5 mr-3' />
                     <span>{tab.label}</span>
                   </div>
                   <ChevronRight className='h-4 w-4' />
-                </button>
+                </Button>
               </li>
             ))}
           </ul>

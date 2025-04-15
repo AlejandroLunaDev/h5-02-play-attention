@@ -2,15 +2,43 @@
 
 import { usePathname, useRouter } from 'next/navigation';
 import { useLocale, useTranslations } from 'next-intl';
-import Select from 'react-select';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue
+} from '@/shared/ui/select';
 
+/**
+ * Constante de idiomas disponibles
+ * Sigue el principio Open/Closed - se pueden añadir más idiomas sin modificar la implementación
+ */
 const LANGUAGES = [
   { value: 'en', label: 'English', flag: '/svgs/lang/en.svg' },
   { value: 'es', label: 'Español', flag: '/svgs/lang/es.svg' }
 ];
 
+/**
+ * Componente para mostrar una opción de idioma con bandera
+ * Sigue el principio de Responsabilidad Única (SRP)
+ */
+const LanguageOption = ({ flag, label }) => (
+  <div className='flex items-center'>
+    <Image src={flag} alt={label} width={20} height={15} className='mr-2' />
+    <span>{label}</span>
+  </div>
+);
+
+/**
+ * Componente para seleccionar el idioma
+ * Sigue principios SOLID:
+ * - SRP: Se enfoca solo en la funcionalidad de cambio de idioma
+ * - OCP: Se puede extender sin modificar (añadiendo más idiomas)
+ * - DIP: Depende de abstracciones (LanguageOption) en lugar de detalles concretos
+ */
 export default function LanguageSwitcher() {
   const locale = useLocale();
   const router = useRouter();
@@ -19,6 +47,7 @@ export default function LanguageSwitcher() {
   const settingsT = useTranslations('settings');
   const [isMounted, setIsMounted] = useState(false);
 
+  // Montaje del componente en cliente para evitar errores de hidratación
   useEffect(() => {
     setIsMounted(true);
   }, []);
@@ -29,84 +58,38 @@ export default function LanguageSwitcher() {
     translatedLabel: t(`languageNames.${lang.value}`)
   }));
 
-  const handleLanguageChange = option => {
+  // Manejador para cambio de idioma - Actualiza la URL con el idioma seleccionado
+  const handleLanguageChange = value => {
     const pathSegments = pathname.split('/');
-    pathSegments[1] = option.value; // Replace the locale segment
+    pathSegments[1] = value; // Replace the locale segment
     router.push(pathSegments.join('/'));
   };
 
   // No renderizar en el servidor para evitar diferencias de hidratación
   if (!isMounted) return null;
 
+  const currentLanguage = languages.find(lang => lang.value === locale);
+
   return (
     <div className='inline-block align-middle'>
       <p className='sr-only'>{settingsT('selectLanguage')}</p>
-      <Select
-        defaultValue={languages.find(lang => lang.value === locale)}
-        onChange={handleLanguageChange}
-        options={languages}
-        unstyled
-        menuPlacement='auto'
-        menuPosition='fixed'
-        formatOptionLabel={option => (
-          <div className='flex items-center'>
-            <Image
-              src={option.flag}
-              alt={option.translatedLabel}
-              width={20}
-              height={15}
-              className='mr-2'
+      <Select defaultValue={locale} onValueChange={handleLanguageChange}>
+        <SelectTrigger className='w-[160px] border-transparent bg-transparent hover:border-primary focus:border-primary focus:ring-primary/50'>
+          <SelectValue>
+            <LanguageOption
+              flag={currentLanguage.flag}
+              label={currentLanguage.translatedLabel}
             />
-            <span>{option.translatedLabel}</span>
-          </div>
-        )}
-        styles={{
-          control: base => ({
-            ...base,
-            backgroundColor: 'transparent',
-            border: '2px solid transparent',
-            '&:hover': {
-              borderColor: '#00ff99'
-            },
-            '&:focus': {
-              borderColor: 'transparent',
-              boxShadow: 'none'
-            },
-            padding: '0',
-            boxShadow: 'none',
-            fontSize: '12px',
-            cursor: 'pointer'
-          }),
-          menu: base => ({
-            ...base,
-            backgroundColor: '#1c1c22',
-            boxShadow: '0 4px 6px rgba(0, 0, 0, 0.3)',
-            zIndex: 100
-          }),
-          option: (base, state) => ({
-            ...base,
-            padding: '10px',
-            display: 'flex',
-            alignItems: 'center',
-            fontSize: '10px',
-            color: state.isSelected ? '#1c1c22' : '#fff',
-            backgroundColor: state.isSelected
-              ? '#00ff99'
-              : state.isFocused
-              ? '#2a2a32'
-              : 'transparent',
-            cursor: 'pointer',
-            '&:hover': {
-              backgroundColor: '#00e187',
-              color: '#1c1c22'
-            }
-          }),
-          singleValue: base => ({
-            ...base,
-            color: '#fff'
-          })
-        }}
-      />
+          </SelectValue>
+        </SelectTrigger>
+        <SelectContent>
+          {languages.map(lang => (
+            <SelectItem key={lang.value} value={lang.value}>
+              <LanguageOption flag={lang.flag} label={lang.translatedLabel} />
+            </SelectItem>
+          ))}
+        </SelectContent>
+      </Select>
     </div>
   );
 }
