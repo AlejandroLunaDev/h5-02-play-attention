@@ -5,6 +5,7 @@ import './globals.css';
 import { getMessages } from 'next-intl/server';
 import Sidebar from '@/shared/layout/sidebar/sidebar';
 import { routing } from '@/i18n/routing';
+import { QueryProvider } from '@/shared/providers';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -46,10 +47,12 @@ export default async function RootLayout({ children, params }) {
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className='flex h-screen'>
-            <Sidebar />
-            <main className='flex-1 overflow-auto'>{children}</main>
-          </div>
+          <QueryProvider>
+            <div className='flex h-screen'>
+              <Sidebar />
+              <main className='flex-1 overflow-auto'>{children}</main>
+            </div>
+          </QueryProvider>
         </NextIntlClientProvider>
       </body>
     </html>
