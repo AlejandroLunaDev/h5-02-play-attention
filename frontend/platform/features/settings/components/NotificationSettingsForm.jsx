@@ -2,6 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 import { Save } from 'lucide-react';
+import { Button } from '@/shared/ui/button';
 
 /**
  * Componente para el toggle de notificaciones
@@ -9,7 +10,7 @@ import { Save } from 'lucide-react';
  */
 const NotificationToggle = ({ isChecked, onChange, label, description }) => {
   return (
-    <div>
+    <div className='rounded-lg p-4 bg-accent/10 hover:bg-accent/20 transition-colors duration-200'>
       <label className='flex items-center cursor-pointer'>
         <div className='relative'>
           <input
@@ -20,7 +21,7 @@ const NotificationToggle = ({ isChecked, onChange, label, description }) => {
           />
           <div
             className={`w-10 h-6 rounded-full ${
-              isChecked ? 'bg-blue-600' : 'bg-gray-200'
+              isChecked ? 'bg-primary' : 'bg-gray-200'
             }`}
           />
           <div
@@ -29,9 +30,9 @@ const NotificationToggle = ({ isChecked, onChange, label, description }) => {
             }`}
           />
         </div>
-        <span className='ml-3 text-gray-700'>{label}</span>
+        <span className='ml-3 font-medium text-gray-800'>{label}</span>
       </label>
-      <p className='text-sm text-gray-500 mt-1 ml-14'>{description}</p>
+      <p className='text-sm text-gray-500 mt-2 ml-14'>{description}</p>
     </div>
   );
 };
@@ -49,35 +50,39 @@ const NotificationSettingsForm = ({
   const t = useTranslations('settings');
 
   return (
-    <div className='space-y-4'>
-      <NotificationToggle
-        isChecked={notifications.email}
-        onChange={() => onNotificationChange('email')}
-        label={t('emailNotifications')}
-        description={t('emailNotificationsDesc')}
-      />
+    <div className='space-y-6'>
+      <div className='space-y-4'>
+        <NotificationToggle
+          isChecked={notifications.email}
+          onChange={() => onNotificationChange('email')}
+          label={t('emailNotifications')}
+          description={t('emailNotificationsDesc')}
+        />
 
-      <NotificationToggle
-        isChecked={notifications.push}
-        onChange={() => onNotificationChange('push')}
-        label={t('pushNotifications')}
-        description={t('pushNotificationsDesc')}
-      />
+        <NotificationToggle
+          isChecked={notifications.push}
+          onChange={() => onNotificationChange('push')}
+          label={t('pushNotifications')}
+          description={t('pushNotificationsDesc')}
+        />
 
-      <NotificationToggle
-        isChecked={notifications.sms}
-        onChange={() => onNotificationChange('sms')}
-        label={t('smsNotifications')}
-        description={t('smsNotificationsDesc')}
-      />
+        <NotificationToggle
+          isChecked={notifications.sms}
+          onChange={() => onNotificationChange('sms')}
+          label={t('smsNotifications')}
+          description={t('smsNotificationsDesc')}
+        />
+      </div>
 
-      <button
-        onClick={onSave}
-        className='px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 flex items-center'
-      >
-        <Save className='h-4 w-4 mr-2' />
-        {t('saveChanges')}
-      </button>
+      <div className='pt-4'>
+        <Button
+          onClick={onSave}
+          className='px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 flex items-center'
+        >
+          <Save className='h-4 w-4 mr-2' />
+          {t('saveChanges')}
+        </Button>
+      </div>
     </div>
   );
 };

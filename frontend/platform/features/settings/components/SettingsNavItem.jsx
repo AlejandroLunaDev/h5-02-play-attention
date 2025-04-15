@@ -1,5 +1,9 @@
 'use client';
 
+import { Button } from '@/shared/ui/button';
+import { ChevronRight } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
 /**
  * Componente para un elemento de navegación en la configuración
  * Sigue el principio de Responsabilidad Única (SRP)
@@ -7,17 +11,22 @@
 const SettingsNavItem = ({ id, icon, label, isActive, onClick }) => {
   return (
     <li>
-      <button
+      <Button
         onClick={onClick}
-        className={`flex items-center w-full p-4 text-left ${
+        variant='ghost'
+        className={cn(
+          'flex items-center justify-between w-full p-4 text-left rounded-none h-auto',
           isActive
-            ? 'bg-blue-50 text-blue-700 border-l-4 border-blue-700'
-            : 'text-gray-700 hover:bg-gray-50'
-        }`}
+            ? 'bg-primary/10 text-primary border-l-4 border-primary'
+            : 'text-foreground hover:bg-accent'
+        )}
       >
-        {icon}
-        {label}
-      </button>
+        <div className='flex items-center'>
+          {icon}
+          <span>{label}</span>
+        </div>
+        <ChevronRight className='h-4 w-4' />
+      </Button>
     </li>
   );
 };

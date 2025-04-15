@@ -133,10 +133,14 @@ export default function SettingsPage() {
       <h1 className='text-3xl font-bold mb-6'>{t('title')}</h1>
       <p className='text-gray-600 mb-8'>{t('description')}</p>
 
-      <div className='flex flex-col md:flex-row gap-8'>
-        {/* Settings Navigation */}
-        <div className='w-full md:w-1/4'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+        {/* Panel lateral con opciones de configuración */}
+        <div className='md:col-span-1'>
           <Card>
+            <CardHeader>
+              <CardTitle className='text-xl'>{t('title')}</CardTitle>
+              <CardDescription>{t('description')}</CardDescription>
+            </CardHeader>
             <CardContent className='p-0'>
               <nav>
                 <ul>
@@ -156,8 +160,8 @@ export default function SettingsPage() {
           </Card>
         </div>
 
-        {/* Settings Content */}
-        <div className='w-full md:w-3/4'>
+        {/* Contenido principal de configuración */}
+        <div className='md:col-span-2'>
           <Card>
             <CardHeader>
               <CardTitle>{title}</CardTitle>

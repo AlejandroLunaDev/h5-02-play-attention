@@ -72,14 +72,14 @@ export default function Sidebar() {
               <li key={item.name}>
                 <Link
                   href={item.path}
-                  className='flex items-center p-2 text-gray-300 rounded-lg hover:bg-gray-700'
+                  className='flex items-center p-2 text-white rounded-lg hover:bg-gray-700 hover:text-white transition-colors duration-200'
                 >
                   {item.icon && (
                     <div className='w-6 h-6 mr-3 flex justify-center items-center'>
                       <item.icon className='h-5 w-5' />
                     </div>
                   )}
-                  {expanded && <span>{item.name}</span>}
+                  {expanded && <span className='font-medium'>{item.name}</span>}
                 </Link>
               </li>
             ))}
@@ -90,12 +90,12 @@ export default function Sidebar() {
         <div className='p-4 border-t border-gray-800'>
           {expanded ? (
             <div className='flex justify-between items-center'>
-              <span className='text-gray-400 text-sm'>{t('language')}</span>
-              <LanguageSwitcher />
+              <span className='text-white text-sm'>{t('language')}</span>
+              <LanguageSwitcher darkMode={true} />
             </div>
           ) : (
             <div className='flex justify-center'>
-              <LanguageSwitcher />
+              <LanguageSwitcher darkMode={true} />
             </div>
           )}
         </div>

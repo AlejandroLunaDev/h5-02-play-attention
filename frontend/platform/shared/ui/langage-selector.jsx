@@ -25,10 +25,10 @@ const LANGUAGES = [
  * Componente para mostrar una opción de idioma con bandera
  * Sigue el principio de Responsabilidad Única (SRP)
  */
-const LanguageOption = ({ flag, label }) => (
+const LanguageOption = ({ flag, label, darkMode = false }) => (
   <div className='flex items-center'>
     <Image src={flag} alt={label} width={20} height={15} className='mr-2' />
-    <span>{label}</span>
+    <span className={darkMode ? 'text-white' : ''}>{label}</span>
   </div>
 );
 
@@ -39,7 +39,7 @@ const LanguageOption = ({ flag, label }) => (
  * - OCP: Se puede extender sin modificar (añadiendo más idiomas)
  * - DIP: Depende de abstracciones (LanguageOption) en lugar de detalles concretos
  */
-export default function LanguageSwitcher() {
+export default function LanguageSwitcher({ darkMode = false }) {
   const locale = useLocale();
   const router = useRouter();
   const pathname = usePathname();
@@ -70,15 +70,20 @@ export default function LanguageSwitcher() {
 
   const currentLanguage = languages.find(lang => lang.value === locale);
 
+  const triggerClass = `w-[160px] border-transparent ${
+    darkMode ? 'bg-transparent text-white hover:bg-gray-700' : 'bg-transparent'
+  } hover:border-primary focus:border-primary focus:ring-primary/50`;
+
   return (
     <div className='inline-block align-middle'>
       <p className='sr-only'>{settingsT('selectLanguage')}</p>
       <Select defaultValue={locale} onValueChange={handleLanguageChange}>
-        <SelectTrigger className='w-[160px] border-transparent bg-transparent hover:border-primary focus:border-primary focus:ring-primary/50'>
+        <SelectTrigger className={triggerClass}>
           <SelectValue>
             <LanguageOption
               flag={currentLanguage.flag}
               label={currentLanguage.translatedLabel}
+              darkMode={darkMode}
             />
           </SelectValue>
         </SelectTrigger>
