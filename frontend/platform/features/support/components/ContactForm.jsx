@@ -1,170 +1,127 @@
 'use client';
 
-import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { Send } from 'lucide-react';
 import { Button } from '@/shared/ui/button';
 import { Input } from '@/shared/ui/input';
-import { Label } from '@/shared/ui/label';
+import { Textarea } from '@/shared/ui/textarea';
+import { Mail } from 'lucide-react';
 
 /**
- * Componente para mostrar un mensaje de éxito
- * Sigue el principio de Responsabilidad Única (SRP)
+ * Componente para mostrar y manejar el formulario de contacto
+ * Sigue el principio de Responsabilidad Única (SRP) - solo gestiona el formulario de contacto
  */
-const SuccessMessage = ({ message }) => (
-  <div className='bg-green-50 text-green-700 p-4 rounded-md mb-4 flex items-center'>
-    <div className='mr-3 bg-green-100 rounded-full p-1'>
-      <svg
-        xmlns='http://www.w3.org/2000/svg'
-        className='h-5 w-5'
-        viewBox='0 0 20 20'
-        fill='currentColor'
-      >
-        <path
-          fillRule='evenodd'
-          d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'
-          clipRule='evenodd'
-        />
-      </svg>
-    </div>
-    <p>{message}</p>
-  </div>
-);
-
-/**
- * Componente para campo de formulario
- * Sigue el principio de Responsabilidad Única (SRP) e Interface Segregation (ISP)
- */
-const FormField = ({
-  id,
-  label,
-  type = 'text',
-  name,
-  value,
-  onChange,
-  required = false,
-  isTextarea = false,
-  rows = 5
-}) => (
-  <div className='space-y-2'>
-    <Label htmlFor={id}>
-      {label} {required && '*'}
-    </Label>
-    {isTextarea ? (
-      <textarea
-        id={id}
-        name={name}
-        required={required}
-        rows={rows}
-        value={value}
-        onChange={onChange}
-        className='w-full p-2 border rounded-md border-input bg-transparent'
-      />
-    ) : (
-      <Input
-        id={id}
-        type={type}
-        name={name}
-        required={required}
-        value={value}
-        onChange={onChange}
-      />
-    )}
-  </div>
-);
-
-/**
- * Componente para el formulario de contacto
- * Sigue el principio de Responsabilidad Única (SRP) - encargado solo del formulario de contacto
- * Sigue el principio de Inversión de Dependencias (DIP) - depende de abstracciones
- */
-export default function ContactForm() {
+export default function ContactForm({
+  formState,
+  handleChange,
+  submitContactForm,
+  isSubmitting,
+  submitStatus
+}) {
   const t = useTranslations('support');
-  const [contactForm, setContactForm] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-  const [submitted, setSubmitted] = useState(false);
-
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    setContactForm({
-      ...contactForm,
-      [name]: value
-    });
-  };
-
-  const handleSubmit = e => {
-    e.preventDefault();
-    // Submit logic would go here (API call in production)
-    console.log('Form submitted:', contactForm);
-    setSubmitted(true);
-    // Reset form after submission
-    setTimeout(() => {
-      setContactForm({
-        name: '',
-        email: '',
-        subject: '',
-        message: ''
-      });
-      setSubmitted(false);
-    }, 3000);
-  };
 
   return (
-    <>
-      {submitted ? (
-        <SuccessMessage message={t('messageSent')} />
+    <div className='bg-gray-50 border border-gray-200 p-8 rounded-md shadow-sm'>
+      <div className='flex items-center gap-3 mb-6'>
+        <div className='h-10 w-10 bg-blue-50 rounded-full flex items-center justify-center'>
+          <Mail className='h-5 w-5 text-[#43b0f1]' />
+        </div>
+        <h3 className='text-xl font-medium text-[#053c69]'>
+          {t('contact.title')}
+        </h3>
+      </div>
+
+      {submitStatus === 'success' ? (
+        <div className='text-center p-4 bg-green-50 rounded-md border border-green-200 text-green-700'>
+          {t('contact.success')}
+        </div>
       ) : (
-        <form onSubmit={handleSubmit} className='space-y-4'>
+        <form onSubmit={submitContactForm} className='space-y-4'>
           <div className='grid grid-cols-1 md:grid-cols-2 gap-4'>
-            <FormField
-              id='name'
-              label={t('name')}
-              name='name'
-              value={contactForm.name}
-              onChange={handleInputChange}
+            <div>
+              <label
+                htmlFor='name'
+                className='block text-sm font-medium text-gray-700 mb-1'
+              >
+                {t('contact.name')}
+              </label>
+              <Input
+                id='name'
+                name='name'
+                value={formState.name}
+                onChange={handleChange}
+                required
+                className='w-full'
+              />
+            </div>
+            <div>
+              <label
+                htmlFor='email'
+                className='block text-sm font-medium text-gray-700 mb-1'
+              >
+                {t('contact.email')}
+              </label>
+              <Input
+                id='email'
+                name='email'
+                type='email'
+                value={formState.email}
+                onChange={handleChange}
+                required
+                className='w-full'
+              />
+            </div>
+          </div>
+
+          <div>
+            <label
+              htmlFor='subject'
+              className='block text-sm font-medium text-gray-700 mb-1'
+            >
+              {t('contact.subject')}
+            </label>
+            <Input
+              id='subject'
+              name='subject'
+              value={formState.subject}
+              onChange={handleChange}
               required
-            />
-            <FormField
-              id='email'
-              label={t('email')}
-              type='email'
-              name='email'
-              value={contactForm.email}
-              onChange={handleInputChange}
-              required
+              className='w-full'
             />
           </div>
 
-          <FormField
-            id='subject'
-            label={t('subject')}
-            name='subject'
-            value={contactForm.subject}
-            onChange={handleInputChange}
-            required
-          />
+          <div>
+            <label
+              htmlFor='message'
+              className='block text-sm font-medium text-gray-700 mb-1'
+            >
+              {t('contact.message')}
+            </label>
+            <Textarea
+              id='message'
+              name='message'
+              value={formState.message}
+              onChange={handleChange}
+              required
+              rows={5}
+              className='w-full'
+            />
+          </div>
 
-          <FormField
-            id='message'
-            label={t('message')}
-            name='message'
-            value={contactForm.message}
-            onChange={handleInputChange}
-            required
-            isTextarea
-            rows={5}
-          />
+          {submitStatus === 'error' && (
+            <div className='p-3 bg-red-50 rounded-md border border-red-200 text-red-700'>
+              {t('contact.error')}
+            </div>
+          )}
 
-          <Button type='submit'>
-            <Send className='mr-2 h-4 w-4' />
-            {t('send')}
+          <Button
+            type='submit'
+            disabled={isSubmitting}
+            className='w-full bg-[#43b0f1] hover:bg-[#3a9ddb] transition-colors duration-300'
+          >
+            {isSubmitting ? t('contact.sending') : t('contact.send')}
           </Button>
         </form>
       )}
-    </>
+    </div>
   );
 }

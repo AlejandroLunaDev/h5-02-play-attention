@@ -10,7 +10,7 @@ import { Button } from '@/shared/ui/button';
  */
 const NotificationToggle = ({ isChecked, onChange, label, description }) => {
   return (
-    <div className='rounded-lg p-4 bg-accent/10 hover:bg-accent/20 transition-colors duration-200'>
+    <div className='rounded-lg p-4 bg-gray-50 hover:bg-gray-100 border border-gray-200 transition-colors duration-200'>
       <label className='flex items-center cursor-pointer'>
         <div className='relative'>
           <input
@@ -21,18 +21,18 @@ const NotificationToggle = ({ isChecked, onChange, label, description }) => {
           />
           <div
             className={`w-10 h-6 rounded-full ${
-              isChecked ? 'bg-primary' : 'bg-gray-200'
+              isChecked ? 'bg-[#43b0f1]' : 'bg-gray-300'
             }`}
           />
           <div
-            className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform ${
+            className={`absolute left-1 top-1 bg-white w-4 h-4 rounded-full transition-transform shadow-sm ${
               isChecked ? 'transform translate-x-4' : ''
             }`}
           />
         </div>
-        <span className='ml-3 font-medium text-gray-800'>{label}</span>
+        <span className='ml-3 font-medium text-[#053c69]'>{label}</span>
       </label>
-      <p className='text-sm text-gray-500 mt-2 ml-14'>{description}</p>
+      <p className='text-sm text-gray-600 mt-2 ml-14'>{description}</p>
     </div>
   );
 };
@@ -74,10 +74,10 @@ const NotificationSettingsForm = ({
         />
       </div>
 
-      <div className='pt-4'>
+      <div className='pt-5 border-t border-gray-100'>
         <Button
           onClick={onSave}
-          className='px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 flex items-center'
+          className='px-5 py-2.5 bg-[#43b0f1] text-white rounded-md hover:bg-[#2a9de0] transition-colors flex items-center'
         >
           <Save className='h-4 w-4 mr-2' />
           {t('saveChanges')}

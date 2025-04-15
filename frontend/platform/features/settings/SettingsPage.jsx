@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { useTranslations } from 'next-intl';
-import { User, Bell, Globe } from 'lucide-react';
+import { User, Bell, Globe, ArrowRight, Check } from 'lucide-react';
 import {
   Card,
   CardContent,
@@ -38,6 +38,7 @@ export default function SettingsPage() {
   });
 
   const [activeTab, setActiveTab] = useState('profile');
+  const [saveSuccess, setSaveSuccess] = useState(false);
 
   // Métodos para actualizar estado, que serán pasados a componentes hijos
   const handleInputChange = e => {
@@ -61,7 +62,8 @@ export default function SettingsPage() {
   const handleSave = e => {
     e.preventDefault();
     // Save logic would go here (API call in production)
-    alert(t('settingsSaved'));
+    setSaveSuccess(true);
+    setTimeout(() => setSaveSuccess(false), 3000);
   };
 
   // Definición de pestañas para el menú (cumple con Open/Closed Principle)
@@ -129,17 +131,23 @@ export default function SettingsPage() {
   const { title, description } = getActiveTabInfo();
 
   return (
-    <div className='p-8'>
-      <h1 className='text-3xl font-bold mb-6'>{t('title')}</h1>
+    <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10'>
+      <h1 className='text-2xl md:text-3xl font-bold text-[#053c69] mb-3'>
+        {t('title')}
+      </h1>
       <p className='text-gray-600 mb-8'>{t('description')}</p>
 
-      <div className='grid grid-cols-1 md:grid-cols-3 gap-8'>
+      <div className='grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8'>
         {/* Panel lateral con opciones de configuración */}
         <div className='md:col-span-1'>
-          <Card>
-            <CardHeader>
-              <CardTitle className='text-xl'>{t('title')}</CardTitle>
-              <CardDescription>{t('description')}</CardDescription>
+          <Card className='border border-gray-200 shadow-sm overflow-hidden'>
+            <CardHeader className='bg-white border-b border-gray-100 pb-4'>
+              <CardTitle className='text-lg text-[#053c69]'>
+                {t('title')}
+              </CardTitle>
+              <CardDescription className='text-gray-600'>
+                {t('description')}
+              </CardDescription>
             </CardHeader>
             <CardContent className='p-0'>
               <nav>
@@ -162,15 +170,25 @@ export default function SettingsPage() {
 
         {/* Contenido principal de configuración */}
         <div className='md:col-span-2'>
-          <Card>
-            <CardHeader>
-              <CardTitle>{title}</CardTitle>
-              <CardDescription>{description}</CardDescription>
+          <Card className='border border-gray-200 shadow-sm'>
+            <CardHeader className='bg-white border-b border-gray-100'>
+              <CardTitle className='text-xl text-[#053c69]'>{title}</CardTitle>
+              <CardDescription className='text-gray-600'>
+                {description}
+              </CardDescription>
             </CardHeader>
-            <CardContent>{renderActiveContent()}</CardContent>
+            <CardContent className='p-6'>{renderActiveContent()}</CardContent>
           </Card>
         </div>
       </div>
+
+      {/* Mensaje de éxito */}
+      {saveSuccess && (
+        <div className='fixed bottom-6 right-6 bg-green-100 border border-green-200 text-green-800 p-4 rounded-lg shadow-lg flex items-center max-w-md animate-fadeIn'>
+          <Check className='h-5 w-5 mr-3 text-green-600' />
+          <span className='font-medium'>{t('settingsSaved')}</span>
+        </div>
+      )}
     </div>
   );
 }

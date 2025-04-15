@@ -22,7 +22,7 @@ const FormField = ({
   <div className='space-y-2'>
     <Label
       htmlFor={id}
-      className='block text-sm font-medium text-gray-700 mb-1'
+      className='block text-sm font-medium text-[#053c69] mb-1'
     >
       {label}
     </Label>
@@ -33,7 +33,7 @@ const FormField = ({
         name={name}
         value={value}
         onChange={onChange}
-        className='w-full'
+        className='w-full border-gray-300 focus:border-[#43b0f1] focus:ring-[#43b0f1] rounded-md shadow-sm'
       />
     )}
   </div>
@@ -74,20 +74,20 @@ const ProfileSettingsForm = ({ userData, onInputChange, onSave }) => {
             name='role'
             value={userData.role}
             onChange={onInputChange}
-            className='w-full p-2 border rounded-md appearance-none pr-10 bg-transparent'
+            className='w-full p-2 border border-gray-300 rounded-md appearance-none pr-10 bg-transparent focus:outline-none focus:ring-2 focus:ring-[#43b0f1] focus:border-transparent'
           >
             <option value='Client'>{t('client')}</option>
             <option value='Professional'>{t('professional')}</option>
             <option value='Company'>{t('company')}</option>
           </select>
-          <ChevronDown className='absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400' />
+          <ChevronDown className='absolute right-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400 pointer-events-none' />
         </div>
       </FormField>
 
-      <div className='pt-4'>
+      <div className='pt-5 border-t border-gray-100'>
         <Button
           type='submit'
-          className='px-4 py-2 bg-primary text-white rounded-md hover:bg-primary/90 flex items-center'
+          className='px-5 py-2.5 bg-[#43b0f1] text-white rounded-md hover:bg-[#2a9de0] transition-colors flex items-center'
         >
           <Save className='h-4 w-4 mr-2' />
           {t('saveChanges')}

@@ -161,6 +161,38 @@
     "faqQuestion4": "¿Necesito algún equipo especial para usar Play Attention?",
     "faqAnswer4": "El requisito básico es una computadora con acceso a internet. La tecnología BrainAware™ funciona con nuestro hardware especializado que está incluido con tu compra.",
     "faqQuestion5": "¿Puede Play Attention reemplazar la medicación para el TDAH?",
-    "faqAnswer5": "Play Attention no está destinado a reemplazar la medicación, pero puede usarse como un enfoque complementario. Muchos usuarios reportan mejores resultados cuando combinan Play Attention con su tratamiento médico. Siempre consulta con un profesional de la salud con respecto a las decisiones de tratamiento."
+    "faqAnswer5": "Play Attention no está destinado a reemplazar la medicación, pero puede usarse como un enfoque complementario. Muchos usuarios reportan mejores resultados cuando combinan Play Attention con su tratamiento médico. Siempre consulta con un profesional de la salud con respecto a las decisiones de tratamiento.",
+    "needMoreHelp": "¿Necesitas más ayuda?",
+    "supportTeamAvailable": "Nuestro equipo de soporte está disponible para ayudarte con cualquier pregunta o problema.",
+    "contactSupport": "Contactar a Soporte",
+    "contact": {
+      "title": "Formulario de Contacto",
+      "name": "Nombre",
+      "email": "Correo electrónico",
+      "subject": "Asunto",
+      "message": "Mensaje",
+      "sending": "Enviando...",
+      "send": "Enviar",
+      "success": "¡Tu mensaje ha sido enviado con éxito! Te responderemos pronto.",
+      "error": "Ha ocurrido un error al enviar tu mensaje. Por favor, inténtalo de nuevo."
+    },
+    "faq": {
+      "title": "Preguntas Frecuentes",
+      "q1": "¿Qué es Play Attention y cómo funciona?",
+      "a1": "Play Attention es un programa de entrenamiento cognitivo que utiliza tecnología inspirada en la NASA para ayudar a mejorar el enfoque, la atención y la función ejecutiva. Funciona proporcionando retroalimentación en tiempo real durante ejercicios interactivos, entrenando tu cerebro para mantener la atención.",
+      "q2": "¿Cuánto tiempo toma ver resultados?",
+      "a2": "La mayoría de los usuarios comienzan a notar mejoras después de 8-10 sesiones. Se recomienda una práctica constante (2-3 sesiones por semana) para obtener resultados óptimos. Cambios más significativos típicamente se observan después de 3-6 meses de uso regular.",
+      "q3": "¿Es Play Attention adecuado para todas las edades?",
+      "a3": "Sí, Play Attention puede ser beneficioso para niños (7+), adolescentes y adultos. El programa se ajusta al nivel de habilidad de cada usuario y proporciona desafíos apropiados para cada edad."
+    },
+    "resources": {
+      "title": "Recursos Adicionales",
+      "documentation": "Documentación",
+      "documentationDesc": "Accede a manuales, guías y documentación completa sobre el sistema",
+      "tutorials": "Tutoriales",
+      "tutorialsDesc": "Aprende a usar todas las funciones con nuestros videos paso a paso",
+      "guides": "Guías Prácticas",
+      "guidesDesc": "Descarga guías prácticas para implementar Play Attention en tu rutina diaria"
+    }
   }
 }

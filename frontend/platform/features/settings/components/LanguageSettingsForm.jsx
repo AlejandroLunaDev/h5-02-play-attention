@@ -9,15 +9,15 @@ import LanguageSwitcher from '@/shared/ui/langage-selector';
  */
 const SubtitleOption = ({ value, label, defaultChecked = false }) => {
   return (
-    <label className='flex items-center p-2 hover:bg-accent/10 rounded-md cursor-pointer transition-colors duration-200'>
+    <label className='flex items-center p-2.5 hover:bg-gray-100 rounded-md cursor-pointer transition-colors duration-200'>
       <input
         type='radio'
         name='subtitles'
         value={value}
-        className='h-4 w-4 text-primary'
+        className='h-4 w-4 text-[#43b0f1] focus:ring-[#43b0f1]'
         defaultChecked={defaultChecked}
       />
-      <span className='ml-2 text-gray-800'>{label}</span>
+      <span className='ml-2.5 text-gray-700'>{label}</span>
     </label>
   );
 };
@@ -28,9 +28,9 @@ const SubtitleOption = ({ value, label, defaultChecked = false }) => {
  */
 const SettingsSection = ({ title, description, children }) => {
   return (
-    <div className='bg-accent/10 p-6 rounded-lg'>
-      <h3 className='text-lg font-medium text-gray-800 mb-2'>{title}</h3>
-      <p className='text-sm text-gray-600 mb-4'>{description}</p>
+    <div className='bg-gray-50 p-6 rounded-lg border border-gray-200'>
+      <h3 className='text-lg font-medium text-[#053c69] mb-2'>{title}</h3>
+      <p className='text-sm text-gray-600 mb-5'>{description}</p>
       {children}
     </div>
   );
@@ -50,7 +50,7 @@ const LanguageSettingsForm = () => {
         title={t('selectLanguage')}
         description={t('languageChangeInfo')}
       >
-        <div className='w-full max-w-xs mt-4'>
+        <div className='w-full max-w-xs mt-4 bg-white p-4 rounded-md border border-gray-200'>
           <LanguageSwitcher />
         </div>
       </SettingsSection>
@@ -59,7 +59,7 @@ const LanguageSettingsForm = () => {
         title={t('subtitleLanguageTitle')}
         description={t('subtitleLanguageDesc')}
       >
-        <div className='space-y-3 mt-2'>
+        <div className='space-y-3 mt-2 bg-white p-3 rounded-md border border-gray-200'>
           <SubtitleOption
             value='useSelectedLanguage'
             label={t('useSelectedLanguage')}

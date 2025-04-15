@@ -25,14 +25,18 @@ export default function SupportTabs({ activeTab, setActiveTab }) {
     { id: 'contact', icon: Mail, label: t('contactForm') },
     { id: 'chat', icon: MessageSquare, label: t('liveChat') },
     { id: 'ticket', icon: Ticket, label: t('supportTicket') },
-    { id: 'faq', icon: HelpCircle, label: t('faq') }
+    { id: 'faq', icon: HelpCircle, label: t('faq.title') }
   ];
 
   return (
-    <Card>
-      <CardHeader>
-        <CardTitle>{t('supportOptions')}</CardTitle>
-        <CardDescription>{t('chooseOption')}</CardDescription>
+    <Card className='border border-gray-200 shadow-sm overflow-hidden'>
+      <CardHeader className='bg-white border-b border-gray-100 pb-4'>
+        <CardTitle className='text-lg text-[#053c69]'>
+          {t('supportOptions')}
+        </CardTitle>
+        <CardDescription className='text-gray-600'>
+          {t('chooseOption')}
+        </CardDescription>
       </CardHeader>
       <CardContent className='p-0'>
         <nav>
@@ -45,15 +49,24 @@ export default function SupportTabs({ activeTab, setActiveTab }) {
                   className={cn(
                     'flex items-center justify-between w-full p-4 text-left rounded-none h-auto',
                     activeTab === tab.id
-                      ? 'bg-primary/10 text-primary border-l-4 border-primary'
-                      : 'text-foreground hover:bg-accent'
+                      ? 'bg-blue-50 text-[#053c69] border-l-4 border-[#43b0f1] font-medium'
+                      : 'text-gray-700 hover:bg-gray-50'
                   )}
                 >
                   <div className='flex items-center'>
-                    <tab.icon className='h-5 w-5 mr-3' />
+                    <tab.icon
+                      className={cn(
+                        'h-5 w-5 mr-3',
+                        activeTab === tab.id
+                          ? 'text-[#43b0f1]'
+                          : 'text-gray-500'
+                      )}
+                    />
                     <span>{tab.label}</span>
                   </div>
-                  <ChevronRight className='h-4 w-4' />
+                  {activeTab === tab.id && (
+                    <ChevronRight className='h-4 w-4 text-[#43b0f1]' />
+                  )}
                 </Button>
               </li>
             ))}

@@ -161,6 +161,38 @@
     "faqQuestion4": "Do I need any special equipment to use Play Attention?",
     "faqAnswer4": "The basic requirement is a computer with internet access. The BrainAware™ technology works with our specialized hardware that is included with your purchase.",
     "faqQuestion5": "Can Play Attention replace medication for ADHD?",
-    "faqAnswer5": "Play Attention is not intended to replace medication but can be used as a complementary approach. Many users report improved results when combining Play Attention with their medical treatment. Always consult with a healthcare professional regarding treatment decisions."
+    "faqAnswer5": "Play Attention is not intended to replace medication but can be used as a complementary approach. Many users report improved results when combining Play Attention with their medical treatment. Always consult with a healthcare professional regarding treatment decisions.",
+    "needMoreHelp": "Need More Help?",
+    "supportTeamAvailable": "Our support team is available to help you with any questions or issues.",
+    "contactSupport": "Contact Support",
+    "contact": {
+      "title": "Contact Form",
+      "name": "Name",
+      "email": "Email",
+      "subject": "Subject",
+      "message": "Message",
+      "sending": "Sending...",
+      "send": "Send",
+      "success": "Your message has been sent successfully! We'll get back to you soon.",
+      "error": "An error occurred while sending your message. Please try again."
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "What is Play Attention and how does it work?",
+      "a1": "Play Attention is a cognitive training program that uses NASA-inspired technology to help improve focus, attention, and executive function. It works by providing real-time feedback during interactive exercises, training your brain to maintain attention.",
+      "q2": "How long does it take to see results?",
+      "a2": "Most users begin to notice improvements after 8-10 sessions. Consistent practice (2-3 sessions per week) is recommended for optimal results. More significant changes are typically observed after 3-6 months of regular use.",
+      "q3": "Is Play Attention suitable for all ages?",
+      "a3": "Yes, Play Attention can be beneficial for children (7+), adolescents, and adults. The program adjusts to each user's skill level and provides age-appropriate challenges."
+    },
+    "resources": {
+      "title": "Additional Resources",
+      "documentation": "Documentation",
+      "documentationDesc": "Access manuals, guides, and comprehensive documentation about the system",
+      "tutorials": "Tutorials",
+      "tutorialsDesc": "Learn to use all features with our step-by-step videos",
+      "guides": "Practical Guides",
+      "guidesDesc": "Download practical guides for implementing Play Attention in your daily routine"
+    }
   }
 }
