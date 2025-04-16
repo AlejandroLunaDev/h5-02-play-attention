@@ -31,7 +31,7 @@ export default function SupportTabs({ activeTab, setActiveTab }) {
   return (
     <Card className='border border-gray-200 shadow-sm overflow-hidden'>
       <CardHeader className='bg-white border-b border-gray-100 pb-4'>
-        <CardTitle className='text-lg text-[#053c69]'>
+        <CardTitle className='text-lg text-indigo-800'>
           {t('supportOptions')}
         </CardTitle>
         <CardDescription className='text-gray-600'>
@@ -49,7 +49,7 @@ export default function SupportTabs({ activeTab, setActiveTab }) {
                   className={cn(
                     'flex items-center justify-between w-full p-4 text-left rounded-none h-auto',
                     activeTab === tab.id
-                      ? 'bg-blue-50 text-[#053c69] border-l-4 border-[#43b0f1] font-medium'
+                      ? 'bg-indigo-50 text-indigo-800 border-l-4 border-indigo-600 font-medium'
                       : 'text-gray-700 hover:bg-gray-50'
                   )}
                 >
@@ -58,14 +58,14 @@ export default function SupportTabs({ activeTab, setActiveTab }) {
                       className={cn(
                         'h-5 w-5 mr-3',
                         activeTab === tab.id
-                          ? 'text-[#43b0f1]'
+                          ? 'text-indigo-600'
                           : 'text-gray-500'
                       )}
                     />
                     <span>{tab.label}</span>
                   </div>
                   {activeTab === tab.id && (
-                    <ChevronRight className='h-4 w-4 text-[#43b0f1]' />
+                    <ChevronRight className='h-4 w-4 text-indigo-600' />
                   )}
                 </Button>
               </li>

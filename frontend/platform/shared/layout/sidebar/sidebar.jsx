@@ -52,7 +52,7 @@ export default function Sidebar() {
     <>
       {/* Sidebar para desktop */}
       <div
-        className={`h-screen bg-[#053c69] transition-all duration-300 hidden md:block ${
+        className={`h-screen bg-indigo-900 transition-all duration-300 hidden md:block ${
           expanded ? 'w-72' : 'w-16'
         }`}
       >

@@ -10,9 +10,9 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/shared/ui/card';
  */
 const ContactItem = ({ icon: Icon, title, content }) => (
   <div className='flex items-center'>
-    <Icon className='h-5 w-5 mr-3 text-[#43b0f1]' />
+    <Icon className='h-5 w-5 mr-3 text-indigo-600' />
     <div>
-      <p className='font-medium text-[#053c69]'>{title}</p>
+      <p className='font-medium text-indigo-800'>{title}</p>
       <p className='text-sm text-gray-600'>{content}</p>
     </div>
   </div>
@@ -24,7 +24,7 @@ const ContactItem = ({ icon: Icon, title, content }) => (
  */
 const BusinessHours = ({ title, items }) => (
   <div>
-    <p className='font-medium text-[#053c69] mb-1'>{title}</p>
+    <p className='font-medium text-indigo-800 mb-1'>{title}</p>
     {items.map((item, index) => (
       <p key={index} className='text-sm text-gray-600'>
         {item}
@@ -63,7 +63,7 @@ export default function DirectContact() {
   return (
     <Card className='border border-gray-200 shadow-sm'>
       <CardHeader className='bg-white border-b border-gray-100 pb-4'>
-        <CardTitle className='text-lg text-[#053c69]'>
+        <CardTitle className='text-lg text-indigo-800'>
           {t('directContact')}
         </CardTitle>
       </CardHeader>
